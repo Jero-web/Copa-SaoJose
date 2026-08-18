@@ -1,0 +1,274 @@
+    :root {
+      --bg-dark: #071120;
+      --card-bg: rgba(7, 21, 41, 0.95);
+      --gold: #f4c244;
+      --gold-border: #d4a338;
+      --gold-glow: rgba(244, 194, 68, 0.4);
+      --cyan-glow: #00d2ff;
+      --text-white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: radial-gradient(circle at center, #0e223d 0%, var(--bg-dark) 100%);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px 10px 40px;
+    }
+
+    /* Cabeçalho */
+    .header {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .header h1 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px var(--gold-glow);
+    }
+    .header h2 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #a9c2e6;
+      letter-spacing: 2px;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    /* Abas de Navegação (Mobile) */
+    .mobile-tabs {
+      display: none;
+      gap: 6px;
+      width: 100%;
+      max-width: 450px;
+      margin-bottom: 20px;
+      background: rgba(4, 13, 26, 0.9);
+      padding: 6px;
+      border-radius: 30px;
+      border: 1px solid rgba(244, 194, 68, 0.4);
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 10px 4px;
+      border: none;
+      background: transparent;
+      color: #a0aec0;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 20px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--gold);
+      color: #071120;
+      font-weight: 900;
+      box-shadow: 0 0 12px var(--gold-glow);
+    }
+
+    /* Estrutura do Torneio */
+    .bracket-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .bracket-container {
+      display: flex;
+      gap: 25px;
+      align-items: stretch;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .round {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      gap: 20px;
+      flex: 1;
+      max-width: 320px;
+      min-width: 270px;
+    }
+
+    .round-title {
+      text-align: center;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      text-shadow: 0 0 8px var(--gold-glow);
+    }
+
+    /* Cards de Partida */
+    .matchup-card {
+      background: var(--card-bg);
+      border: 2px solid var(--gold-border);
+      border-radius: 14px;
+      padding: 8px 10px;
+      box-shadow: 0 0 12px rgba(0, 210, 255, 0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .team-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 6px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .team-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .team-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #11253e;
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .team-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    .team-row.placeholder .team-name {
+      color: rgba(255, 255, 255, 0.35);
+      font-style: italic;
+    }
+
+    /* Placar */
+    .score-input {
+      width: 44px;
+      height: 36px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1.5px solid var(--cyan-glow);
+      border-radius: 6px;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-align: center;
+      outline: none;
+      flex-shrink: 0;
+    }
+
+    .score-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+    }
+
+    .score-input:disabled {
+      background: rgba(0, 0, 0, 0.2);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: transparent;
+    }
+
+    /* Campeão */
+    .winner-box {
+      margin-top: 15px;
+      background: linear-gradient(135deg, rgba(244, 194, 68, 0.2), rgba(7, 21, 41, 0.95));
+      border: 2px dashed var(--gold);
+      box-shadow: 0 0 20px var(--gold-glow);
+      text-align: center;
+      padding: 16px 10px;
+      border-radius: 14px;
+    }
+
+    .winner-box .trophy {
+      font-size: 2.2rem;
+      margin-bottom: 4px;
+    }
+
+    .winner-name {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: var(--gold);
+      margin-top: 4px;
+      text-transform: uppercase;
+      word-break: break-word;
+    }
+
+    /* Botão Mobile */
+    .step-nav-btn {
+      display: none;
+      width: 100%;
+      margin-top: 15px;
+      padding: 12px;
+      background: var(--gold);
+      color: #071120;
+      font-weight: 900;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 0 0 12px var(--gold-glow);
+    }
+
+    @media (max-width: 860px) {
+      .mobile-tabs {
+        display: flex;
+      }
+
+      .bracket-container {
+        display: block;
+      }
+
+      .round {
+        display: none !important;
+        width: 100%;
+        max-width: 100%;
+        gap: 14px;
+      }
+
+      .round.active-round {
+        display: flex !important;
+      }
+
+      .round-title {
+        display: none;
+      }
+
+      .step-nav-btn {
+        display: block;
+      }
+    }
