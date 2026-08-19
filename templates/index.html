@@ -4,14 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Copa São José 2026 - Mata-Mata</title>
+  <link rel="icon" type="image/png" href="/static/logos/logo capa são jose2.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
   <div class="header">
-    <h1>Copa São José 2026</h1>
+    <h1><img class="header-logo" src="/static/logos/logo capa são jose2.png" alt="Copa São José 2026"></h1>
     <h2>Mata-Mata Oficial</h2>
+    <label class="category-selector">
+      <span>Categoria</span>
+      <select id="category-select" name="category">
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
+        <option value="sub-12">Sub-12</option>
+      </select>
+    </label>
   </div>
 
   <!-- Abas Mobile -->
@@ -33,7 +42,7 @@
           <div class="team-row">
             <div class="team-info">
               <div class="team-badge">
-               <img src="/static/logos/E. C. Santos Dumont.jpeg" alt="SD" width="30" height="30">
+               <img src="/static/logos/E. C. Santos Dumont2.png" alt="SD" width="30" height="30">
               </div>
               <span class="team-name">E.C. Clube Santos Dumont</span>
             </div>
@@ -42,7 +51,7 @@
           <div class="team-row">
             <div class="team-info">
               <div class="team-badge">
-                <img src="/static/logos/RESENHA.jpeg" alt="FR" width="30" height="30">
+                <img src="/static/logos/Fut Resenha2.png" alt="FR" width="30" height="30">
               </div>
               <span class="team-name">Fut Resenha F.C.</span>
             </div>
@@ -55,7 +64,7 @@
           <div class="team-row">
             <div class="team-info">
               <div class="team-badge">
-                <img src="/static/logos/VS.png" alt="VS" width="30" height="30">
+                <img src="/static/logos/Veterano2.png" alt="VS" width="30" height="30">
               </div>
               <span class="team-name">Veterano do Suti</span>
             </div>
@@ -64,7 +73,7 @@
           <div class="team-row">
             <div class="team-info">
               <div class="team-badge">
-                <img src="/static/logos/AM.png" alt="AM" width="30" height="30">
+                <img src="/static/logos/Acessórios Modernos2.png" alt="AM" width="30" height="30">
               </div>
               <span class="team-name">Acessórios Modernos</span>
             </div>
@@ -77,7 +86,7 @@
           <div class="team-row">
             <div class="team-info">
               <div class="team-badge">
-                <img src="/static/logos/DR.png" alt="DR" width="30" height="30">
+                <img src="/static/logos/DR fardamentos2.png" alt="DR" width="30" height="30">
               </div>
               <span class="team-name">DR Fardamentos</span>
             </div>
@@ -86,7 +95,7 @@
           <div class="team-row">
             <div class="team-info">
               <div class="team-badge">
-                <img src="/static/logos/BJ.png" alt="BJ" width="30" height="30">
+                <img src="/static/logos/Boca junior2.png" alt="BJ" width="30" height="30">
               </div>
               <span class="team-name">Boca Junior</span>
             </div>
@@ -99,7 +108,7 @@
           <div class="team-row">
             <div class="team-info">
               <div class="team-badge">
-                <img src="/static/logos/BX.png" alt="BX" width="30" height="30">
+                <img src="/static/logos/FC bruxos2.png" alt="BX" width="30" height="30">
               </div>
               <span class="team-name">Bruxos F.C.</span>
             </div>
@@ -108,7 +117,7 @@
           <div class="team-row">
             <div class="team-info">
               <div class="team-badge">
-                <img src="/static/logos/HM.png" alt="HM" width="30" height="30">
+                <img src="/static/logos/HMC2.png" alt="HM" width="30" height="30">
               </div>
               <span class="team-name">HMC</span>
             </div>
@@ -194,21 +203,166 @@
       </div>
 
     </div>
+    <div class="category-view" id="feminino-view" hidden>
+      <div class="round-title">Feminino - Classificação</div>
+      <div class="standings-wrapper">
+        <table class="standings-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Escudo</th>
+              <th>Time</th>
+              <th>J</th>
+              <th>V</th>
+              <th>E</th>
+              <th>D</th>
+              <th>GP</th>
+              <th>GC</th>
+              <th>SG</th>
+              <th>Pts</th>
+            </tr>
+          </thead>
+          <tbody id="female-standings-body"></tbody>
+        </table>
+      </div>
+      <div class="round-title female-matches-title">Fase de Jogos</div>
+      <div class="female-matches" id="female-matches"></div>
+    </div>
+    <div class="category-view empty-category-view" id="sub12-view" hidden>
+      <div class="round-title">Sub-12</div>
+      <p>Resultados da categoria Sub-12 ainda não cadastrados.</p>
+    </div>
   </div>
 
   <script>
     const debounceTimers = {};
+    const femaleMatches = [
+      ['ECCF Cancelão', "Ella's Esporte Clube"],
+      ['Real Meninas', 'Envolventes'],
+      ["Ella's Esporte Clube", 'Envolventes'],
+      ['Real Meninas', 'ECCF Cancelão'],
+      ['ECCF Cancelão', 'Envolventes'],
+      ['Real Meninas', "Ella's Esporte Clube"]
+    ];
+    const femaleTeamLogos = {
+      'ECCF Cancelão': '/static/logos/ECCF Cancelão2.png',
+      "Ella's Esporte Clube": "/static/logos/Ella's Esporte Clube2.png",
+      'Real Meninas': '/static/logos/Real Meninas2.png',
+      'Envolventes': '/static/logos/envolventes2.png'
+    };
+    const femaleTeams = [...new Set(femaleMatches.flat())];
+
+    function updateFemaleStandings() {
+      const standings = femaleTeams.map(team => ({
+        team,
+        games: 0,
+        wins: 0,
+        draws: 0,
+        losses: 0,
+        goalsFor: 0,
+        goalsAgainst: 0,
+        points: 0
+      }));
+      const byTeam = Object.fromEntries(standings.map(row => [row.team, row]));
+
+      femaleMatches.forEach((teams, index) => {
+        const card = document.getElementById(`feminino-f${index + 1}`);
+        if (!card) return;
+        const inputs = card.querySelectorAll('.score-input');
+        if (inputs[0].value === '' || inputs[1].value === '') return;
+
+        const score1 = Number(inputs[0].value);
+        const score2 = Number(inputs[1].value);
+        const team1 = byTeam[teams[0]];
+        const team2 = byTeam[teams[1]];
+
+        team1.games++;
+        team2.games++;
+        team1.goalsFor += score1;
+        team1.goalsAgainst += score2;
+        team2.goalsFor += score2;
+        team2.goalsAgainst += score1;
+
+        if (score1 > score2) {
+          team1.wins++;
+          team1.points += 3;
+          team2.losses++;
+        } else if (score2 > score1) {
+          team2.wins++;
+          team2.points += 3;
+          team1.losses++;
+        } else {
+          team1.draws++;
+          team2.draws++;
+          team1.points++;
+          team2.points++;
+        }
+      });
+
+      standings.forEach(row => {
+        row.goalDifference = row.goalsFor - row.goalsAgainst;
+      });
+      standings.sort((a, b) => b.points - a.points || b.goalDifference - a.goalDifference || b.goalsFor - a.goalsFor || a.team.localeCompare(b.team));
+
+      document.getElementById('female-standings-body').innerHTML = standings.map((row, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td class="standing-team-logo">
+            <img src="${femaleTeamLogos[row.team]}" alt="Escudo ${row.team}">
+          </td>
+          <td class="standing-team-name">${row.team}</td>
+          <td>${row.games}</td>
+          <td>${row.wins}</td>
+          <td>${row.draws}</td>
+          <td>${row.losses}</td>
+          <td>${row.goalsFor}</td>
+          <td>${row.goalsAgainst}</td>
+          <td>${row.goalDifference}</td>
+          <td class="standing-points">${row.points}</td>
+        </tr>
+      `).join('');
+    }
+
+    function createFemaleMatches() {
+      const container = document.getElementById('female-matches');
+      container.innerHTML = femaleMatches.map((teams, index) => `
+        <div class="matchup-card" id="feminino-f${index + 1}">
+          <div class="female-match-title">Jogo ${index + 1}</div>
+          ${teams.map(team => `
+            <div class="team-row">
+              <div class="team-info">
+                <div class="team-badge">
+                  <img src="${femaleTeamLogos[team]}" alt="Escudo ${team}" onerror="this.style.display='none'; this.parentElement.textContent='${team.charAt(0)}';">
+                </div>
+                <span class="team-name">${team}</span>
+              </div>
+              <input type="number" class="score-input" min="0" oninput="handleScoreChange('feminino-f${index + 1}')">
+            </div>
+          `).join('')}
+        </div>
+      `).join('');
+    }
+
+    function switchCategory(category) {
+      const isMale = category === 'masculino';
+      const isFemale = category === 'feminino';
+      const isSub12 = category === 'sub-12';
+      document.querySelector('.bracket-container').hidden = !isMale;
+      document.getElementById('feminino-view').hidden = !isFemale;
+      document.getElementById('sub12-view').hidden = !isSub12;
+      document.querySelector('.mobile-tabs').hidden = !isMale;
+    }
 
     // Mapeamento de badges para imagens
     const badgeToImage = {
-      'SD': '/static/logos/E. C. Santos Dumont.jpeg',
-      'FR': '/static/logos/RESENHA.jpeg',
-      'VS': '/static/logos/VS.png',
-      'AM': '/static/logos/AM.png',
-      'DR': '/static/logos/DR.png',
-      'BJ': '/static/logos/BJ.png',
-      'BX': '/static/logos/BX.png',
-      'HM': '/static/logos/HM.png'
+      'SD': '/static/logos/E. C. Santos Dumont2.png',
+      'FR': '/static/logos/Fut Resenha2.png',
+      'VS': '/static/logos/Veterano2.png',
+      'AM': '/static/logos/Acessórios Modernos2.png',
+      'DR': '/static/logos/DR fardamentos2.png',
+      'BJ': '/static/logos/Boca junior2.png',
+      'BX': '/static/logos/FC bruxos2.png',
+      'HM': '/static/logos/HMC2.png',
     };
 
     function switchTab(index) {
@@ -317,8 +471,8 @@
           img = document.createElement('img');
           img.src = badgeToImage[champion.badge] || '/static/logos/' + champion.badge + '.png';
           img.alt = champion.badge;
-          img.width = 100;
-          img.height = 100;
+          img.width = 220;
+          img.height = 150;
           champBadgeEl.appendChild(img);
         }
       } else {
@@ -353,6 +507,7 @@
     // Disparado no evento oninput dos placares (com debounce de 300ms)
     function handleScoreChange(matchId) {
       updateBracket();
+      updateFemaleStandings();
 
       clearTimeout(debounceTimers[matchId]);
       debounceTimers[matchId] = setTimeout(() => {
@@ -396,12 +551,29 @@
           if (dados['m-final'].score2 !== null) inputs[1].value = dados['m-final'].score2;
           updateBracket();
         }
+
+        ['feminino-f1', 'feminino-f2', 'feminino-f3', 'feminino-f4', 'feminino-f5', 'feminino-f6'].forEach(id => {
+          if (dados[id]) {
+            const inputs = document.getElementById(id).querySelectorAll('.score-input');
+            if (dados[id].score1 !== null) inputs[0].value = dados[id].score1;
+            if (dados[id].score2 !== null) inputs[1].value = dados[id].score2;
+          }
+        });
+        updateFemaleStandings();
       } catch (e) {
         console.error("Erro ao recuperar dados do SQLite:", e);
       }
     }
 
-    window.addEventListener('DOMContentLoaded', carregarDadosIniciais);
+    document.getElementById('category-select').addEventListener('change', event => {
+      switchCategory(event.target.value);
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      createFemaleMatches();
+      switchCategory('masculino');
+      carregarDadosIniciais();
+    });
   </script>
 </body>
 </html>
