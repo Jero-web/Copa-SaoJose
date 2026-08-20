@@ -228,9 +228,42 @@
       <div class="round-title female-matches-title">Fase de Jogos</div>
       <div class="female-matches" id="female-matches"></div>
     </div>
-    <div class="category-view empty-category-view" id="sub12-view" hidden>
-      <div class="round-title">Sub-12</div>
-      <p>Resultados da categoria Sub-12 ainda não cadastrados.</p>
+    <div class="category-view" id="sub12-view" hidden>
+      <div class="bracket-container sub12-bracket">
+        <div class="round active-round" id="sub12-round-0">
+          <div class="round-title">Quartas de Final</div>
+          <div class="matchup-card" id="s12-qf1">
+            <div class="team-row"><div class="team-info"><div class="team-badge"><img src="/static/logos/irmã mariele2.png" alt="Colégio Irmã Mariele" width="30" height="30"></div><span class="team-name">Colégio Irmã Mariele</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-qf1')"></div>
+            <div class="team-row"><div class="team-info"><div class="team-badge"><img src="/static/logos/reis da bola2.png" alt="Reis da Bola" width="30" height="30"></div><span class="team-name">Reis da Bola</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-qf1')"></div>
+          </div>
+          <div class="matchup-card" id="s12-qf2">
+            <div class="team-row"><div class="team-info"><div class="team-badge"><img src="/static/logos/meninos de ouro2.png" alt="Meninos de Ouro" width="30" height="30"></div><span class="team-name">Meninos de Ouro</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-qf2')"></div>
+            <div class="team-row"><div class="team-info"><div class="team-badge"><img src="/static/logos/coração valente2.png" alt="Projeto Coração Valente" width="30" height="30"></div><span class="team-name">Projeto Coração Valente</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-qf2')"></div>
+          </div>
+          <div class="matchup-card" id="s12-qf3">
+            <div class="team-row"><div class="team-info"><div class="team-badge"><img src="/static/logos/IBV-FUT7 2.png" alt="IBV FUT7" width="30" height="30"></div><span class="team-name">IBV FUT7</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-qf3')"></div>
+            <div class="team-row"><div class="team-info"><div class="team-badge"><img src="/static/logos/fortaleza2.png" alt="Fortaleza" width="30" height="30"></div><span class="team-name">Fortaleza</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-qf3')"></div>
+          </div>
+          <div class="matchup-card" id="s12-qf4">
+            <div class="team-row"><div class="team-info"><div class="team-badge"><img src="/static/logos/escolinha paulista2.png" alt="Escolinha Paulista" width="30" height="30"></div><span class="team-name">Escolinha Paulista</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-qf4')"></div>
+            <div class="team-row"><div class="team-info"><div class="team-badge"><img src="/static/logos/netus tobias2.png" alt="Netus Tobias" width="30" height="30"></div><span class="team-name">Netus Tobias</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-qf4')"></div>
+          </div>
+          <button class="step-nav-btn" onclick="switchTab(1)">Ver Semifinais ➔</button>
+        </div>
+        <div class="round" id="sub12-round-1">
+          <div class="round-title">Semifinais</div>
+          <div class="matchup-card" id="s12-sf1"><div class="team-row placeholder" id="s12-sf1-t1"><div class="team-info"><div class="team-badge">?</div><span class="team-name">Vencedor QF 1</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-sf1')" disabled></div><div class="team-row placeholder" id="s12-sf1-t2"><div class="team-info"><div class="team-badge">?</div><span class="team-name">Vencedor QF 2</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-sf1')" disabled></div></div>
+          <div class="matchup-card" id="s12-sf2"><div class="team-row placeholder" id="s12-sf2-t1"><div class="team-info"><div class="team-badge">?</div><span class="team-name">Vencedor QF 3</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-sf2')" disabled></div><div class="team-row placeholder" id="s12-sf2-t2"><div class="team-info"><div class="team-badge">?</div><span class="team-name">Vencedor QF 4</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-sf2')" disabled></div></div>
+          <button class="step-nav-btn" onclick="switchTab(2)">Ver Finais ➔</button>
+        </div>
+        <div class="round" id="sub12-round-2">
+          <div class="round-title">Finais</div>
+          <div class="matchup-card" id="s12-final"><div class="female-match-title">Grande Final</div><div class="team-row placeholder" id="s12-fin-t1"><div class="team-info"><div class="team-badge">?</div><span class="team-name">Vencedor SF 1</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-final')" disabled></div><div class="team-row placeholder" id="s12-fin-t2"><div class="team-info"><div class="team-badge">?</div><span class="team-name">Vencedor SF 2</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-final')" disabled></div></div>
+          <div class="matchup-card" id="s12-third"><div class="female-match-title">Disputa de 3º lugar</div><div class="team-row placeholder" id="s12-third-t1"><div class="team-info"><div class="team-badge">?</div><span class="team-name">Perdedor SF 1</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-third')" disabled></div><div class="team-row placeholder" id="s12-third-t2"><div class="team-info"><div class="team-badge">?</div><span class="team-name">Perdedor SF 2</span></div><input type="number" class="score-input" min="0" oninput="handleScoreChange('s12-third')" disabled></div></div>
+          <div class="winner-box"><div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px;"><div class="trophy"> 🏆</div><div class="champion-badge" id="s12-champion-badge"></div></div><div style="font-size: 0.75rem; color: #a9c2e6; letter-spacing: 1px; font-weight: 700;">CAMPEÃO SUB-12</div><div class="winner-name" id="s12-champion-name">Aguardando...</div></div>
+          <button class="step-nav-btn" style="background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--gold);" onclick="switchTab(0)">⬅ Voltar para Quartas</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -350,7 +383,7 @@
       document.querySelector('.bracket-container').hidden = !isMale;
       document.getElementById('feminino-view').hidden = !isFemale;
       document.getElementById('sub12-view').hidden = !isSub12;
-      document.querySelector('.mobile-tabs').hidden = !isMale;
+      document.querySelector('.mobile-tabs').hidden = !isMale && !isSub12;
     }
 
     // Mapeamento de badges para imagens
@@ -366,10 +399,12 @@
     };
 
     function switchTab(index) {
+      const isSub12 = document.getElementById('category-select').value === 'sub-12';
+      const roundSelector = isSub12 ? '#sub12-view .round' : '.bracket-container:not(.sub12-bracket) .round';
       document.querySelectorAll('.tab-btn').forEach((btn, i) => {
         btn.classList.toggle('active', i === index);
       });
-      document.querySelectorAll('.round').forEach((round, i) => {
+      document.querySelectorAll(roundSelector).forEach((round, i) => {
         round.classList.toggle('active-round', i === index);
       });
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -389,15 +424,32 @@
       if (score1 > score2) {
         return {
           name: rows[0].querySelector('.team-name').innerText,
-          badge: rows[0].querySelector('.team-badge').innerText || rows[0].querySelector('.team-badge img').alt
+          logo: rows[0].querySelector('.team-badge img')?.src
         };
       } else if (score2 > score1) {
         return {
           name: rows[1].querySelector('.team-name').innerText,
-          badge: rows[1].querySelector('.team-badge').innerText || rows[1].querySelector('.team-badge img').alt
+          logo: rows[1].querySelector('.team-badge img')?.src
         };
       }
       return null;
+    }
+
+    function getLoser(matchId) {
+      const card = document.getElementById(matchId);
+      const rows = card.querySelectorAll('.team-row');
+      const s1 = rows[0].querySelector('input').value;
+      const s2 = rows[1].querySelector('input').value;
+      if (s1 === '' || s2 === '') return null;
+
+      const score1 = parseInt(s1, 10);
+      const score2 = parseInt(s2, 10);
+      if (score1 === score2) return null;
+      const row = score1 < score2 ? rows[0] : rows[1];
+      return {
+        name: row.querySelector('.team-name').innerText,
+        logo: row.querySelector('.team-badge img')?.src
+      };
     }
 
     function setSlot(slotId, team, fallbackText) {
@@ -411,13 +463,13 @@
         // Atualiza a imagem se existir, senão cria uma
         let img = badgeDiv.querySelector('img');
         if (img) {
-          img.src = badgeToImage[team.badge] || '/static/logos/' + team.badge + '.png';
-          img.alt = team.badge;
+          img.src = team.logo;
+          img.alt = team.name;
         } else {
           badgeDiv.innerHTML = '';
           img = document.createElement('img');
-          img.src = badgeToImage[team.badge] || '/static/logos/' + team.badge + '.png';
-          img.alt = team.badge;
+          img.src = team.logo;
+          img.alt = team.name;
           img.width = 30;
           img.height = 30;
           badgeDiv.appendChild(img);
@@ -464,13 +516,13 @@
         // Atualiza a imagem do campeão
         let img = champBadgeEl.querySelector('img');
         if (img) {
-          img.src = badgeToImage[champion.badge] || '/static/logos/' + champion.badge + '.png';
-          img.alt = champion.badge;
+          img.src = champion.logo;
+          img.alt = champion.name;
         } else {
           champBadgeEl.innerHTML = '';
           img = document.createElement('img');
-          img.src = badgeToImage[champion.badge] || '/static/logos/' + champion.badge + '.png';
-          img.alt = champion.badge;
+          img.src = champion.logo;
+          img.alt = champion.name;
           img.width = 220;
           img.height = 150;
           champBadgeEl.appendChild(img);
@@ -479,6 +531,27 @@
         champEl.innerText = 'Aguardando...';
         champBadgeEl.innerHTML = '';
       }
+    }
+
+    function updateSub12Bracket() {
+      const winners = ['s12-qf1', 's12-qf2', 's12-qf3', 's12-qf4'].map(getWinner);
+      setSlot('s12-sf1-t1', winners[0], 'Vencedor QF 1');
+      setSlot('s12-sf1-t2', winners[1], 'Vencedor QF 2');
+      setSlot('s12-sf2-t1', winners[2], 'Vencedor QF 3');
+      setSlot('s12-sf2-t2', winners[3], 'Vencedor QF 4');
+
+      const semifinalWinners = ['s12-sf1', 's12-sf2'].map(getWinner);
+      const semifinalLosers = ['s12-sf1', 's12-sf2'].map(getLoser);
+      setSlot('s12-fin-t1', semifinalWinners[0], 'Vencedor SF 1');
+      setSlot('s12-fin-t2', semifinalWinners[1], 'Vencedor SF 2');
+      setSlot('s12-third-t1', semifinalLosers[0], 'Perdedor SF 1');
+      setSlot('s12-third-t2', semifinalLosers[1], 'Perdedor SF 2');
+
+      const champion = getWinner('s12-final');
+      const championName = document.getElementById('s12-champion-name');
+      const championBadge = document.getElementById('s12-champion-badge');
+      championName.innerText = champion ? champion.name : 'Aguardando...';
+      championBadge.innerHTML = champion ? `<img src="${champion.logo}" alt="${champion.name}" width="220" height="150">` : '';
     }
 
     // Persiste o resultado no banco SQLite
@@ -507,6 +580,7 @@
     // Disparado no evento oninput dos placares (com debounce de 300ms)
     function handleScoreChange(matchId) {
       updateBracket();
+      updateSub12Bracket();
       updateFemaleStandings();
 
       clearTimeout(debounceTimers[matchId]);
@@ -532,6 +606,15 @@
         });
         updateBracket();
 
+        ['s12-qf1', 's12-qf2', 's12-qf3', 's12-qf4'].forEach(id => {
+          if (dados[id]) {
+            const inputs = document.getElementById(id).querySelectorAll('.score-input');
+            if (dados[id].score1 !== null) inputs[0].value = dados[id].score1;
+            if (dados[id].score2 !== null) inputs[1].value = dados[id].score2;
+          }
+        });
+        updateSub12Bracket();
+
         // 2. Preenche semifinais
         ['m-sf1', 'm-sf2'].forEach(id => {
           if (dados[id]) {
@@ -543,6 +626,15 @@
         });
         updateBracket();
 
+        ['s12-sf1', 's12-sf2'].forEach(id => {
+          if (dados[id]) {
+            const inputs = document.getElementById(id).querySelectorAll('.score-input');
+            if (dados[id].score1 !== null) inputs[0].value = dados[id].score1;
+            if (dados[id].score2 !== null) inputs[1].value = dados[id].score2;
+          }
+        });
+        updateSub12Bracket();
+
         // 3. Preenche final
         if (dados['m-final']) {
           const card = document.getElementById('m-final');
@@ -551,6 +643,15 @@
           if (dados['m-final'].score2 !== null) inputs[1].value = dados['m-final'].score2;
           updateBracket();
         }
+
+        ['s12-final', 's12-third'].forEach(id => {
+          if (dados[id]) {
+            const inputs = document.getElementById(id).querySelectorAll('.score-input');
+            if (dados[id].score1 !== null) inputs[0].value = dados[id].score1;
+            if (dados[id].score2 !== null) inputs[1].value = dados[id].score2;
+          }
+        });
+        updateSub12Bracket();
 
         ['feminino-f1', 'feminino-f2', 'feminino-f3', 'feminino-f4', 'feminino-f5', 'feminino-f6'].forEach(id => {
           if (dados[id]) {
