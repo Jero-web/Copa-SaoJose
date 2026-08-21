@@ -8,7 +8,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body data-authenticated="{{ 'true' if usuario else 'false' }}">
+
+  <div class="auth-bar">
+    {% if usuario %}
+      <span class="user-greeting">Olá, {{ usuario['nome'] }}</span>
+    {% endif %}
+    <details class="menu-details">
+      <summary>Menu</summary>
+      <div class="menu-options">
+        <a href="{{ url_for('login') }}">Login</a>
+        {% if usuario %}
+          <a href="{{ url_for('cadastrar') }}">Cadastrar</a>
+          <a href="{{ url_for('logs') }}">Logs</a>
+          <form action="{{ url_for('logout') }}" method="post"><button type="submit">Sair / Logout</button></form>
+        {% endif %}
+      </div>
+    </details>
+  </div>
 
   <div class="header">
     <h1><img class="header-logo" src="/static/logos/logo capa são jose2.png" alt="Copa São José 2026"></h1>
@@ -268,6 +285,7 @@
   </div>
 
   <script>
+    const isAuthenticated = document.body.dataset.authenticated === 'true';
     const debounceTimers = {};
     const femaleMatches = [
       ['ECCF Cancelão', "Ella's Esporte Clube"],
@@ -369,11 +387,19 @@
                 </div>
                 <span class="team-name">${team}</span>
               </div>
-              <input type="number" class="score-input" min="0" oninput="handleScoreChange('feminino-f${index + 1}')">
+              <input type="number" class="score-input" min="0" oninput="handleScoreChange('feminino-f${index + 1}')" ${isAuthenticated ? '' : 'disabled'}>
             </div>
           `).join('')}
         </div>
       `).join('');
+    }
+
+    function applySavedScore(matchId, score) {
+      const card = document.getElementById(matchId);
+      if (!card || !score) return;
+      const inputs = card.querySelectorAll('.score-input');
+      if (score.score1 !== null && score.score1 !== undefined) inputs[0].value = String(score.score1);
+      if (score.score2 !== null && score.score2 !== undefined) inputs[1].value = String(score.score2);
     }
 
     function switchCategory(category) {
@@ -476,7 +502,7 @@
         }
         
         slot.classList.remove('placeholder');
-        input.disabled = false;
+        input.disabled = !isAuthenticated;
       } else {
         slot.querySelector('.team-name').innerText = fallbackText;
         badgeDiv.innerText = '?';
@@ -574,11 +600,20 @@
           score1: score1,
           score2: score2
         })
-      }).catch(err => console.error("Erro ao salvar no SQLite:", err));
+      }).then(async response => {
+        if (!response.ok) {
+          const error = await response.json().catch(() => ({}));
+          throw new Error(error.mensagem || `HTTP ${response.status}`);
+        }
+      }).catch(err => {
+        console.error(`Erro ao salvar ${matchId}:`, err);
+        alert(`Não foi possível salvar o placar: ${err.message}`);
+      });
     }
 
     // Disparado no evento oninput dos placares (com debounce de 300ms)
     function handleScoreChange(matchId) {
+      if (!isAuthenticated) return;
       updateBracket();
       updateSub12Bracket();
       updateFemaleStandings();
@@ -654,11 +689,7 @@
         updateSub12Bracket();
 
         ['feminino-f1', 'feminino-f2', 'feminino-f3', 'feminino-f4', 'feminino-f5', 'feminino-f6'].forEach(id => {
-          if (dados[id]) {
-            const inputs = document.getElementById(id).querySelectorAll('.score-input');
-            if (dados[id].score1 !== null) inputs[0].value = dados[id].score1;
-            if (dados[id].score2 !== null) inputs[1].value = dados[id].score2;
-          }
+          applySavedScore(id, dados[id]);
         });
         updateFemaleStandings();
       } catch (e) {
@@ -672,6 +703,11 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       createFemaleMatches();
+      if (!isAuthenticated) {
+        document.querySelectorAll('.score-input').forEach(input => {
+          input.disabled = true;
+        });
+      }
       switchCategory('masculino');
       carregarDadosIniciais();
     });

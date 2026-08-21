@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logs - Copa São José</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="auth-page logs-page">
+  <main class="logs-card">
+    <div class="logs-header">
+      <div>
+        <span class="eyebrow">Auditoria</span>
+        <h1>Histórico de eventos</h1>
+      </div>
+      <a class="back-link" href="{{ url_for('index') }}">Voltar</a>
+    </div>
+    <div class="logs-table-wrapper">
+      <table class="logs-table">
+        <thead><tr><th>Nome do Usuário</th><th>Data e Hora</th><th>Ação Realizada</th></tr></thead>
+        <tbody>
+          {% for registro in logs %}
+            <tr><td>{{ registro['nome_usuario'] }}</td><td>{{ registro['data_hora']|data_brasilia }}</td><td>{{ registro['acao'] }}</td></tr>
+          {% else %}
+            <tr><td colspan="3">Nenhum evento registrado.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

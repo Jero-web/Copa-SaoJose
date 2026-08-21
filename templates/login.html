@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Copa São José</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="auth-page">
+  <main class="auth-card">
+    <img class="auth-logo" src="/static/logos/logo capa são jose2.png" alt="Copa São José 2026">
+    <h1>Login</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}
+    {% endwith %}
+    <form method="post" class="auth-form">
+      <label for="nome">Nome do usuário</label>
+      <input id="nome" name="nome" type="text" required autocomplete="username">
+      <label for="senha">Senha</label>
+      <input id="senha" name="senha" type="password" required autocomplete="current-password">
+      <button type="submit">Entrar</button>
+    </form>
+    <a class="back-link" href="{{ url_for('index') }}">Voltar para os placares</a>
+  </main>
+</body>
+</html>
